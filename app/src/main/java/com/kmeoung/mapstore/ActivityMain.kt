@@ -1,5 +1,6 @@
 package com.kmeoung.mapstore
 
+import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
@@ -34,6 +35,14 @@ class ActivityMain : BaseActivity() {
                 }).show()
         }
 
+        btn_purchase.setOnClickListener {
+            view->Snackbar.make(view, "진짜 구매?", Snackbar.LENGTH_LONG)
+            .setAction("YES",View.OnClickListener{
+                mAdapter!!.clear()
+                val intent = Intent(this@ActivityMain,ActivityPayment::class.java)
+                startActivity(intent)
+            }).show()
+        }
 
     }
 
