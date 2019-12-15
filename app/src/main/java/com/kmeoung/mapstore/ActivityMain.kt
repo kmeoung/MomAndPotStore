@@ -13,6 +13,7 @@ import com.kmeoung.mapstore.base.BaseActivity
 import com.kmeoung.mapstore.base.BaseRecyclerViewAdapter2
 import com.truevalue.dreamappeal.base.BaseViewHolder
 import com.truevalue.dreamappeal.base.IORecyclerViewListener
+import com.truevalue.dreamappeal.utils.Comm_Prefs
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -25,6 +26,8 @@ class ActivityMain : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+
+
 
         initAdapter()
 
