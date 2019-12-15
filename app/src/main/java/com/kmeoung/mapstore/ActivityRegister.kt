@@ -57,14 +57,17 @@ class ActivityRegister : BaseActivity(){
 
         val params = BaseHttpParams()
         val idm = Comm_Prefs.getCreateIdm() +1
-        params.put("idm", idm)
+        val json = JSONObject()
+        json.put("idm", idm)
         Comm_Prefs.setCreateIdm(idm)
-        params.put("m_name", name)
-        params.put("is_manager", 0)
-        params.put("address",addr)
-        params.put("id",email)
-        params.put("pw",password)
-
+        json.put("m_name", name)
+        json.put("is_manager", 0)
+        json.put("address",addr)
+        json.put("id",email)
+        json.put("pw",password)
+        val parentJson = JSONObject()
+        parentJson.put("memberJson",json)
+        params.put(parentJson)
         BaseOkhttpClient.request(
             HttpType.POST,
             Comm_Params.URL_INSERT_MEMBER,
