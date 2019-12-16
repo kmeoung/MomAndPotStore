@@ -21,7 +21,10 @@ object Comm_Prefs {
         mContext = context
         prefs = mContext!!.getSharedPreferences(Comm_Params.APP_NAME, MODE_PRIVATE)
         if(getCreateIdm() == -1){
-            setCreateIdm(25)
+            setCreateIdm(10)
+        }
+        if(getCreateIdo() == -1){
+            setCreateIdo(100)
         }
     }
 
@@ -40,6 +43,15 @@ object Comm_Prefs {
     }
 
     fun getCreateIdm() : Int{
+        return prefs!!.getInt(Comm_Prefs_Param.PREFS_CREATE_USER_IDM,-1)
+    }
+
+    // 생산코드
+    fun setCreateIdo(idx : Int){
+        prefs!!.edit().putInt(Comm_Prefs_Param.PREFS_CREATE_USER_IDM,idx).commit()
+    }
+
+    fun getCreateIdo() : Int{
         return prefs!!.getInt(Comm_Prefs_Param.PREFS_CREATE_USER_IDM,-1)
     }
 

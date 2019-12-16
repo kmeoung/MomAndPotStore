@@ -31,7 +31,7 @@ object BaseOkhttpClient : OkHttpClient() {
             HttpType.DELETE -> delete(url, header, params)
             else -> post(url, header, params)
         }
-
+        if(params != null) Log.d("TEST", params.bodyParams().toString())
         val call = client.newCall(clientRequest)
 
         call.enqueue(object : Callback {

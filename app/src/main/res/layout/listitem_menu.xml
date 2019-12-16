@@ -11,6 +11,54 @@
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginBottom="10dp"
-        android:elevation="5dp"/>
+        android:elevation="5dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:id="@+id/iv_img"
+            android:background="@color/white"
+            android:layout_marginLeft="5dp"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_title"
+                android:text="Title"
+                android:textColor="#673AB7"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_contents"
+                android:text="1010 / count"
+                android:textColor="#3F51B5"
+                android:textSize="15sp"
+                android:layout_marginTop="10dp"/>
+
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:id="@+id/iv_add"
+            android:src="@drawable/ic_add"
+            android:background="#FF5200"/>
+
+
+
+    </LinearLayout>
 
 </LinearLayout>

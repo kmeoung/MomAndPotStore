@@ -23,11 +23,6 @@ class ActivityLogin : BaseActivity() {
 
         Comm_Prefs.init(this@ActivityLogin)
 
-        val id = "nzwfbx"
-        val pw = "zx78776230"
-        et_email.setText(id)
-        et_password.setText(pw)
-
         onClickView()
     }
 
@@ -53,7 +48,7 @@ class ActivityLogin : BaseActivity() {
         params.put("id", et_email.text.toString())
         params.put("pw", et_password.text.toString())
 
-        if(et_email.text.toString().isNullOrEmpty() || et_password.text.toString().isNullOrEmpty()){
+        if (et_email.text.toString().isNullOrEmpty() || et_password.text.toString().isNullOrEmpty()) {
             Toast.makeText(this@ActivityLogin, "아이디 / 비밀번호를 제대로 입력해주세요", Toast.LENGTH_SHORT)
                 .show()
             return
@@ -69,31 +64,36 @@ class ActivityLogin : BaseActivity() {
                     call: Call,
                     serverCode: Int,
                     body: String
-                    ) {
+                ) {
+                    var isError = false
+
                     val json = JSONObject(body)
-                    val error = json.getString("error");
-                    if (error.isNullOrEmpty()) { // 데이터가 있음
-                        val idm = json.getInt("idm")
-                        val isManager = json.getInt("is_manager")
-                        val name = json.getString("m_name")
-                        val addr = json.getString("address")
-                        val id = json.getString("id")
-
-                        Comm_Prefs.setIdm(idm)
-
-                        Toast.makeText(this@ActivityLogin, "${name}님 환영합니다", Toast.LENGTH_SHORT)
-                            .show()
-
-                        val intent = Intent(this@ActivityLogin, ActivityMain::class.java)
-                        startActivity(intent)
-                        finish()
-                    } else {
+                    try {
+                        val error = json.getString("error")
+                        isError = true
+                    }catch (e: Exception){
                         Toast.makeText(
                             this@ActivityLogin,
                             "아이디 / 비밀번호가 일치하지 않습니다.",
                             Toast.LENGTH_SHORT
-                        )
-                            .show()
+                        ).show()
+                    }finally {
+                        if (!isError) { // 데이터가 있음
+                            val idm = json.getInt("idm")
+                            val isManager = json.getInt("is_manager")
+                            val name = json.getString("m_name")
+                            val addr = json.getString("address")
+                            val id = json.getString("id")
+
+                            Comm_Prefs.setIdm(idm)
+
+                            Toast.makeText(this@ActivityLogin, "${name}님 환영합니다", Toast.LENGTH_SHORT)
+                                .show()
+
+                            val intent = Intent(this@ActivityLogin, ActivityMain::class.java)
+                            startActivity(intent)
+                            finish()
+                        }
                     }
                 }
             }
